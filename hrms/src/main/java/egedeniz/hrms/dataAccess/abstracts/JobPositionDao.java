@@ -6,4 +6,5 @@ import egedeniz.hrms.entities.concretes.JobPosition;
 
 public interface JobPositionDao extends JpaRepository<JobPosition, Integer>{
 
+	JobPosition getByTitle(String title);
 }

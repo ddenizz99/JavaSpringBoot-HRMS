@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import egedeniz.hrms.business.abstracts.UserService;
+import egedeniz.hrms.business.constants.Messages;
 import egedeniz.hrms.core.utilities.results.DataResult;
+import egedeniz.hrms.core.utilities.results.ErrorDataResult;
 import egedeniz.hrms.core.utilities.results.SuccessDataResult;
 import egedeniz.hrms.dataAccess.abstracts.UserDao;
 import egedeniz.hrms.entities.concretes.User;
@@ -23,9 +25,20 @@ public class UserManager implements UserService{
 
 	@Override
 	public DataResult<List<User>> getAll() {
-		// TODO Auto-generated method stub
 		var result = this.userDao.findAll();
+		if (result.isEmpty()) {
+			return new ErrorDataResult<List<User>>(Messages.emptyData);
+		}
 		return new SuccessDataResult<List<User>>(result);
+	}
+
+	@Override
+	public DataResult<User> findByEmailEquals(String email) {
+		var result = this.userDao.findByEmailEquals(email);
+		if (result != null) {
+			return new SuccessDataResult<User>(result);
+		}
+		return new ErrorDataResult<User>(Messages.userNotFound);
 	}
 
 }

@@ -8,4 +8,6 @@ import egedeniz.hrms.entities.concretes.User;
 public interface UserService {
 
 	DataResult<List<User>> getAll();
+	
+	DataResult<User> findByEmailEquals(String email);
 }
