@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -18,7 +19,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@PrimaryKeyJoinColumn(name = "user_id")
+@EqualsAndHashCode(callSuper=false) 
+@PrimaryKeyJoinColumn(name = "user_id",referencedColumnName = "id") 
 public class JobSeeker extends User{
 	
 	@Column(name="first_name")

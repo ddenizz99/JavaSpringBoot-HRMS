@@ -125,6 +125,7 @@ public class AuthManager implements AuthService{
 	}
 	
 	@Override
+	@Transactional
 	public DataResult<Employers> employerRegister(EmployerForRegisterDto employerForRegisterDto) {
 		
 		Result result = BusinessRules.run(
@@ -156,7 +157,7 @@ public class AuthManager implements AuthService{
 		verificationCode.setDateOfVerified(null);
 		this.verificationCodeService.add(verificationCode);
 		
-		//this.mailService.sendSimpleMessage(employerForRegisterDto.getEmail(), "Yeni Kayıt Doğrulama", "<h1>Yeni Kayıt Doğrulama</h1><br><p>Hesabınızı doğrulamak için aşağıdaki adrese tıklayınız.</p><br><a href=\"http://localhost:8080/api/verificationcodes/verifyUser?code=" + code + "\">Hasebı Doğrula</a>");
+		this.mailService.sendSimpleMessage(employerForRegisterDto.getEmail(), "Yeni Kayıt Doğrulama", "<h1>Yeni Kayıt Doğrulama</h1><br><p>Hesabınızı doğrulamak için aşağıdaki adrese tıklayınız.</p><br><a href=\"http://localhost:8080/api/verificationcodes/verifyUser?code=" + code + "\">Hasebı Doğrula</a>");
 		
 		return new SuccessDataResult<Employers>(Messages.userRegistered);
 	}
