@@ -57,6 +57,15 @@ public class JobAdvertisementsController {
 		return new ResponseEntity<DataResult<List<JobAdvertisementDetailDto>>>(result, HttpStatus.BAD_REQUEST);
 	}
 	
+	@GetMapping("/getActiveJobPostingsByReleaseDate")
+	public ResponseEntity<DataResult<List<JobAdvertisementDetailDto>>> activeJobPostingsByReleaseDate(){
+		var result = this.jobAdvertisementService.activeJobPostingsByReleaseDate();
+		if(result.isSuccess()) {
+			return new ResponseEntity<DataResult<List<JobAdvertisementDetailDto>>>(result, HttpStatus.OK);
+		}
+		return new ResponseEntity<DataResult<List<JobAdvertisementDetailDto>>>(result, HttpStatus.BAD_REQUEST);
+	}
+	
 	@GetMapping("/getByEmployer")
 	public ResponseEntity<DataResult<List<JobAdvertisementDetailDto>>> getByEmployer(@RequestParam int employerId){
 		var result = this.jobAdvertisementService.getByEmployer(employerId);

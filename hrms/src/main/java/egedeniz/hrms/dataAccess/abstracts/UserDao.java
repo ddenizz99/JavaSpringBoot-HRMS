@@ -7,4 +7,6 @@ import egedeniz.hrms.entities.concretes.User;
 public interface UserDao extends JpaRepository<User, Integer>{
 
 	User findByEmailEquals(String email);
+	
+	User getById(int id);
 }

@@ -67,4 +67,13 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		return new SuccessResult(Messages.deleted);
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisementDetailDto>> activeJobPostingsByReleaseDate() {
+		var result = this.jobAdvertisementDao.activeJobPostingsByReleaseDate();
+		if (result.isEmpty()) {
+			return new ErrorDataResult<List<JobAdvertisementDetailDto>>(Messages.emptyData);
+		}
+		return new SuccessDataResult<List<JobAdvertisementDetailDto>>(result);
+	}
+
 }

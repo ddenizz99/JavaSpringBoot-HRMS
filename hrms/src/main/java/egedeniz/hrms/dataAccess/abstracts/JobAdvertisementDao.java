@@ -13,6 +13,9 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	@Query("Select new egedeniz.hrms.entities.dtos.JobAdvertisementDetailDto(j.id,e.companyName,jp.title,j.numberOfOpenPositions,j.releaseDate,j.applicationDeadline) From Employers e Inner Join e.jobAdvertisements j Inner Join j.jobPosition jp where j.status = true")
 	List<JobAdvertisementDetailDto> activeJobPostings();
 	
+	@Query("Select new egedeniz.hrms.entities.dtos.JobAdvertisementDetailDto(j.id,e.companyName,jp.title,j.numberOfOpenPositions,j.releaseDate,j.applicationDeadline) From Employers e Inner Join e.jobAdvertisements j Inner Join j.jobPosition jp where j.status = true ORDER BY j.releaseDate DESC")
+	List<JobAdvertisementDetailDto> activeJobPostingsByReleaseDate();
+	
 	@Query("Select new egedeniz.hrms.entities.dtos.JobAdvertisementDetailDto(j.id,e.companyName,jp.title,j.numberOfOpenPositions,j.releaseDate,j.applicationDeadline) From Employers e Inner Join e.jobAdvertisements j Inner Join j.jobPosition jp where e.id=:employerId and j.status = true")
 	List<JobAdvertisementDetailDto> getByEmployer(int employerId);
 }

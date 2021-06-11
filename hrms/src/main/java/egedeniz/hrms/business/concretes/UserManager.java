@@ -41,4 +41,13 @@ public class UserManager implements UserService{
 		return new ErrorDataResult<User>(Messages.userNotFound);
 	}
 
+	@Override
+	public DataResult<User> getById(int id) {
+		var result = this.userDao.getById(id);
+		if (result != null) {
+			return new SuccessDataResult<User>(result);
+		}
+		return new ErrorDataResult<User>(Messages.userNotFound);
+	}
+
 }

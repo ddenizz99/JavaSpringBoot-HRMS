@@ -17,6 +17,8 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisementDetailDto>> activeJobPostings();
 	
+	DataResult<List<JobAdvertisementDetailDto>> activeJobPostingsByReleaseDate();
+	
 	DataResult<List<JobAdvertisementDetailDto>> getByEmployer(int employerId);
 	
 }

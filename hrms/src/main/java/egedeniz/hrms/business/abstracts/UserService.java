@@ -10,4 +10,6 @@ public interface UserService {
 	DataResult<List<User>> getAll();
 	
 	DataResult<User> findByEmailEquals(String email);
+	
+	DataResult<User> getById(int id);
 }
