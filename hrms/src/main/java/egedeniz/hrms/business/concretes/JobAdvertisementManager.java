@@ -76,4 +76,13 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		return new SuccessDataResult<List<JobAdvertisementDetailDto>>(result);
 	}
 
+	@Override
+	public DataResult<JobAdvertisement> getById(int id) {
+		var result = this.jobAdvertisementDao.findById(id);
+		if (result != null) {
+			return new SuccessDataResult<JobAdvertisement>(result);
+		}
+		return new ErrorDataResult<JobAdvertisement>(Messages.emptyData);
+	}
+
 }

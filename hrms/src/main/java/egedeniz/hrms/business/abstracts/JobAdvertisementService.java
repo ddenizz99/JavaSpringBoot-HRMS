@@ -13,6 +13,8 @@ public interface JobAdvertisementService {
 	
 	Result remove(int id);
 	
+	DataResult<JobAdvertisement> getById(int id);
+	
 	DataResult<List<JobAdvertisement>> getAll();
 	
 	DataResult<List<JobAdvertisementDetailDto>> activeJobPostings();

@@ -27,6 +27,7 @@ import egedeniz.hrms.entities.concretes.JobPosition;
 
 @RestController
 @RequestMapping("/api/jobs")
+@CrossOrigin(origins = "http://localhost:3000")
 public class JobsController {
 
 	private JobPositionService jobPositionService;
@@ -36,7 +37,6 @@ public class JobsController {
 		this.jobPositionService = jobPositionService;
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/getall")
 	public ResponseEntity<DataResult<List<JobPosition>>> getAll(){
 		var result = this.jobPositionService.getAll();

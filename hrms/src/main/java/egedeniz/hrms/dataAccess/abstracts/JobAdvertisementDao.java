@@ -10,6 +10,8 @@ import egedeniz.hrms.entities.dtos.JobAdvertisementDetailDto;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
 
+	JobAdvertisement findById(int id);
+	
 	@Query("Select new egedeniz.hrms.entities.dtos.JobAdvertisementDetailDto(j.id,e.companyName,jp.title,j.numberOfOpenPositions,j.releaseDate,j.applicationDeadline) From Employers e Inner Join e.jobAdvertisements j Inner Join j.jobPosition jp where j.status = true")
 	List<JobAdvertisementDetailDto> activeJobPostings();
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import egedeniz.hrms.entities.dtos.JobAdvertisementDetailDto;
 
 @RestController
 @RequestMapping("/api/jobAdvertisements")
+@CrossOrigin(origins = "http://localhost:3000")
 public class JobAdvertisementsController {
 
 	private JobAdvertisementService jobAdvertisementService;
@@ -55,6 +57,15 @@ public class JobAdvertisementsController {
 			return new ResponseEntity<DataResult<List<JobAdvertisementDetailDto>>>(result, HttpStatus.OK);
 		}
 		return new ResponseEntity<DataResult<List<JobAdvertisementDetailDto>>>(result, HttpStatus.BAD_REQUEST);
+	}
+	
+	@GetMapping("/getById")
+	public ResponseEntity<DataResult<JobAdvertisement>> getById(@RequestParam int id){
+		var result = this.jobAdvertisementService.getById(id);
+		if(result.isSuccess()) {
+			return new ResponseEntity<DataResult<JobAdvertisement>>(result, HttpStatus.OK);
+		}
+		return new ResponseEntity<DataResult<JobAdvertisement>>(result, HttpStatus.BAD_REQUEST);
 	}
 	
 	@GetMapping("/getActiveJobPostingsByReleaseDate")
