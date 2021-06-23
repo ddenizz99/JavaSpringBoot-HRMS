@@ -1,5 +1,6 @@
 package egedeniz.hrms.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 	@Override
 	public Result add(JobAdvertisement jobAdvertisement) {
+		jobAdvertisement.setReleaseDate(LocalDate.now());
+		jobAdvertisement.setApplicationDeadline(LocalDate.now());
+		jobAdvertisement.setStatus(true);
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult(Messages.added);
 	}
